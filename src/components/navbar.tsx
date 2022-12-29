@@ -57,7 +57,7 @@ const NavBarItem = ({ isNavOpen = false, title = "", link = "" }) => {
           <div
             className={`flex items-center ${
               isSelected ? "text-white" : "text-[#b3b3b3]"
-            } h-full`}
+            } h-full duration-200`}
           >
             {title}
           </div>
