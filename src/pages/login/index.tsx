@@ -10,6 +10,7 @@ const Login = () => {
     if (user.access_token) {
       navigate("/", { replace: true });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const LoginURL =
@@ -18,10 +19,15 @@ const Login = () => {
       : "/login";
 
   return (
-    <div>
-      <p className="text-green-600 text-7xl">THIS IS SPOTISTAT</p>
-      <a href={LoginURL} className="px-3 py-1 bg-green-500">
-        LogIn
+    <div className="flex flex-col justify-center items-center h-full gap-4 font-['CircularStd']">
+      <p className="text-white text-3xl font-['CircularStd']">
+        Welcome to SpotiStats
+      </p>
+      <a
+        href={LoginURL}
+        className={`text-white px-9 py-4 text-md rounded-full uppercase spoti_button duration-200 tracking-wider`}
+      >
+        SignIn with Spotify
       </a>
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  Navigate,
   Outlet,
   Route,
   Routes,
@@ -12,6 +11,7 @@ import { useAppSelector } from "./hooks";
 import Error from "./pages/404";
 import Home from "./pages/home";
 import Login from "./pages/login";
+import "./app.css";
 
 function App() {
   const location = useLocation();
@@ -38,7 +38,7 @@ const ProtectedRoutes = () => {
     } else {
       navigate("/home", { replace: true });
     }
-  }, []);
+  }, [navigate, user.access_token]);
 
   return (
     <div className="flex flex-col w-full h-full">

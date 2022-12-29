@@ -1,6 +1,11 @@
 import axios from "axios";
 import { getHashParams } from "../utils";
 
+const SERVER_URL =
+  process.env.NODE_ENV !== "production"
+    ? "http://localhost:3001/v1/auth"
+    : "/login";
+
 // TOKENS ******************************************************************************************
 const EXPIRATION_TIME = 3600 * 1000; // 3600 seconds * 1000 = 1 hour in milliseconds
 
@@ -27,7 +32,7 @@ const getLocalRefreshToken = () =>
 const refreshAccessToken = async () => {
   try {
     const { data } = await axios.get(
-      `/refresh_token?refresh_token=${getLocalRefreshToken()}`
+      `${SERVER_URL}/refresh_token?refresh_token=${getLocalRefreshToken()}`
     );
     const { access_token } = data;
     setLocalAccessToken(access_token);
