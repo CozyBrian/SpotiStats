@@ -38,7 +38,7 @@ const refreshAccessToken = async () => {
   }
 };
 
-export const getAccessToken = () => {
+export const getAccessToken = (): string | null => {
   const { error, access_token, refresh_token } = getHashParams();
 
   if (error) {
