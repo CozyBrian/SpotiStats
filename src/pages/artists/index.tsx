@@ -63,7 +63,10 @@ const Artists = () => {
               </div>
             ) : (
               topArtists?.items.map((artist) => (
-                <div className="flex flex-col items-center gap-4 mt-8">
+                <div
+                  key={artist.id}
+                  className="flex flex-col items-center gap-4 mt-8"
+                >
                   <div className="w-[100px] h-[100px] md:w-[200px] md:h-[200px]">
                     <img
                       className="w-full h-full object-cover rounded-lg"
