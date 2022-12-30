@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Oval } from "react-loader-spinner";
+import { motion } from "framer-motion";
 import TrackItem from "../../components/trackItem";
 import {
   getTopTracksLong,
@@ -58,7 +59,12 @@ const Tracks = () => {
   }, [timeRange]);
 
   return (
-    <div className="flex flex-col p-4 md:p-8 lg:p-16">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="flex flex-col p-4 md:p-8 lg:p-16"
+    >
       <div className="flex w-full flex-col md:flex-row items-center md:items-start justify-between text-white align-baseline">
         <p className="text-white tracking-wider uppercase text-3xl lg:text-5xl font-['CircularStd']">
           Tracks
@@ -100,7 +106,7 @@ const Tracks = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

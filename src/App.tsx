@@ -9,6 +9,7 @@ import "./app.css";
 import Artists from "./pages/artists";
 import Tracks from "./pages/tracks";
 import Wrapped from "./pages/wrapped";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const location = useLocation();
@@ -17,43 +18,44 @@ function App() {
       <div className="flex flex-row h-full w-full overflow-hidden">
         {location.pathname !== "/login" && <NavBar />}
         <div className="relative w-full overflow-y-scroll">
-          <Routes location={location} key={location.pathname}>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="artists"
-              element={
-                <ProtectedRoute>
-                  <Artists />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="tracks"
-              element={
-                <ProtectedRoute>
-                  <Tracks />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="wrapped"
-              element={
-                <ProtectedRoute>
-                  <Wrapped />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="artists"
+                element={
+                  <ProtectedRoute>
+                    <Artists />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="tracks"
+                element={
+                  <ProtectedRoute>
+                    <Tracks />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="wrapped"
+                element={
+                  <ProtectedRoute>
+                    <Wrapped />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </AnimatePresence>
         </div>
       </div>
     </div>
