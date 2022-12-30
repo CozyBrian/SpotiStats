@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Spotify from "../assets/spotify.svg";
 import Microphone from "../assets/icons/microphone";
 import Music from "../assets/icons/music";
@@ -7,6 +8,7 @@ import IconUser from "../assets/icons/user";
 import useDeviceDetect from "../hooks/useMobileDetect";
 
 const NavBar = () => {
+  const [isNavOpenM, setIsNavOpenM] = useState(true);
   const [isNavOpen, setIsNavOpen] = useState(true);
   const { isMobile } = useDeviceDetect();
   const routes = [
@@ -34,8 +36,11 @@ const NavBar = () => {
     );
   } else {
     return (
-      <aside
-        style={{ width: isNavOpen ? "275px" : "75px" }}
+      <motion.aside
+        initial={{ width: "275px" }}
+        animate={{ width: isNavOpenM ? "275px" : "75px" }}
+        transition={{ stiffness: 500 }}
+        style={{ width: isNavOpenM ? "275px" : "75px" }}
         className={`text-white h-full bg-black p-4 pt-6 shrink-0`}
         // onClick={() => setIsNavOpen(!isNavOpen)}
       >
@@ -45,13 +50,20 @@ const NavBar = () => {
           } gap-2 pb-6`}
         >
           <img
-            onClick={() => setIsNavOpen(!isNavOpen)}
+            onClick={() => {
+              setIsNavOpenM(!isNavOpenM);
+              setTimeout(() => {
+                setIsNavOpen(!isNavOpen);
+              }, 150);
+            }}
             className="w-10"
             src={Spotify}
             alt="white-spotify"
           />
           {isNavOpen && (
-            <p className="font-['CircularStd'] text-3xl">SpotiStats</p>
+            <p className="font-['CircularStd'] text-3xl flex-nowrap">
+              SpotiStats
+            </p>
           )}
         </div>
         <div className="flex flex-col font-['CircularStd'] gap-1">
@@ -65,7 +77,7 @@ const NavBar = () => {
             />
           ))}
         </div>
-      </aside>
+      </motion.aside>
     );
   }
 };
@@ -85,7 +97,7 @@ const NavBarItem = ({ isNavOpen, title, link, Icon }: navItemProps) => {
   return (
     <Link to={link}>
       <div
-        className={`flex flex-row w-full h-[43px] gap-2 ${
+        className={`flex flex-row w-full h-[43px] overflow-hidden shrink-0 gap-2 ${
           isSelected && "bg-[#181818]"
         } 
         ${!isNavOpen ? "items-center justify-center" : "pl-1"}
@@ -99,7 +111,7 @@ const NavBarItem = ({ isNavOpen, title, link, Icon }: navItemProps) => {
         </div>
         {isNavOpen && (
           <div
-            className={`flex items-center ${
+            className={`flex items-center whitespace-nowrap ${
               isSelected ? "text-white" : "text-[#b3b3b3]"
             } h-full duration-200`}
           >
