@@ -13,7 +13,7 @@ const NavBar = () => {
   return (
     <aside
       style={{ width: isNavOpen ? "275px" : "75px" }}
-      className={`text-white h-full bg-black p-4 pt-6`}
+      className={`text-white h-full bg-black p-4 pt-6 shrink-0`}
       // onClick={() => setIsNavOpen(!isNavOpen)}
     >
       <div
@@ -21,7 +21,12 @@ const NavBar = () => {
           !isNavOpen && "justify-center"
         } gap-2 pb-6`}
       >
-        <img className="w-10" src={Spotify} alt="white-spotify" />
+        <img
+          onClick={() => setIsNavOpen(!isNavOpen)}
+          className="w-10"
+          src={Spotify}
+          alt="white-spotify"
+        />
         {isNavOpen && (
           <p className="font-['CircularStd'] text-3xl">SpotiStats</p>
         )}

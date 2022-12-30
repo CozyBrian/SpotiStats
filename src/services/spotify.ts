@@ -139,6 +139,12 @@ export const getTopArtistsLong = () =>
     { headers }
   );
 
+export const getMinTopArtistsLong = () =>
+  axios.get(
+    "https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10",
+    { headers }
+  );
+
 /**
  * Get a User's Top Tracks
  * https://developer.spotify.com/documentation/web-api/reference/personalization/get-users-top-artists-and-tracks/
@@ -160,3 +166,188 @@ export const getTopTracksLong = () =>
     "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=long_term",
     { headers }
   );
+
+export const getMinTopTracksLong = () =>
+  axios.get(
+    "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10",
+    { headers }
+  );
+
+/**
+ * Get an Artist
+ * https://developer.spotify.com/documentation/web-api/reference/artists/get-artist/
+ */
+export const getArtist = (artistId: string) =>
+  axios.get(`https://api.spotify.com/v1/artists/${artistId}`, { headers });
+
+/**
+ * Follow an Artist
+ * https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
+ */
+export const followArtist = (artistId: string) => {
+  const url = `https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`;
+  return axios({ method: "put", url, headers });
+};
+
+/**
+ * Check if Current User Follows Artists
+ * https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
+ */
+export const doesUserFollowArtist = (artistId: string) =>
+  axios.get(
+    `https://api.spotify.com/v1/me/following/contains?type=artist&ids=${artistId}`,
+    {
+      headers,
+    }
+  );
+
+/**
+ * Check if Users Follow a Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
+ */
+export const doesUserFollowPlaylist = (playlistId: string, userId: string) =>
+  axios.get(
+    `https://api.spotify.com/v1/playlists/${playlistId}/followers/contains?ids=${userId}`,
+    {
+      headers,
+    }
+  );
+
+/**
+ * Create a Playlist (The playlist will be empty until you add tracks)
+ * https://developer.spotify.com/documentation/web-api/reference/playlists/create-playlist/
+ */
+export const createPlaylist = (userId: string, name: string) => {
+  const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
+  const data = JSON.stringify({ name });
+  return axios({ method: "post", url, headers, data });
+};
+
+/**
+ * Add Tracks to a Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/
+ */
+export const addTracksToPlaylist = (playlistId: string, uris: string) => {
+  const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${uris}`;
+  return axios({ method: "post", url, headers });
+};
+
+/**
+ * Follow a Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/
+ */
+export const followPlaylist = (playlistId: string) => {
+  const url = `https://api.spotify.com/v1/playlists/${playlistId}/followers`;
+  return axios({ method: "put", url, headers });
+};
+
+/**
+ * Get a Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlist/
+ */
+export const getPlaylist = (playlistId: string) =>
+  axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, { headers });
+
+/**
+ * Get a Playlist's Tracks
+ * https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/
+ */
+export const getPlaylistTracks = (playlistId: string) =>
+  axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+    headers,
+  });
+
+/**
+ * Return a comma separated string of track IDs from the given array of tracks
+ */
+// const getTrackIds = (tracks) => tracks.map(({ track }) => track.id).join(",");
+
+/**
+ * Get Audio Features for Several Tracks
+ * https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/
+ */
+// export const getAudioFeaturesForTracks = (tracks) => {
+//   const ids = getTrackIds(tracks);
+//   return axios.get(`https://api.spotify.com/v1/audio-features?ids=${ids}`, {
+//     headers,
+//   });
+// };
+
+/**
+ * Get Recommendations Based on Seeds
+ * https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/
+ */
+// export const getRecommendationsForTracks = (tracks) => {
+//   const shuffledTracks = tracks.sort(() => 0.5 - Math.random());
+//   const seed_tracks = getTrackIds(shuffledTracks.slice(0, 5));
+//   const seed_artists = "";
+//   const seed_genres = "";
+
+//   return axios.get(
+//     `https://api.spotify.com/v1/recommendations?seed_tracks=${seed_tracks}&seed_artists=${seed_artists}&seed_genres=${seed_genres}`,
+//     {
+//       headers,
+//     }
+//   );
+// };
+
+/**
+ * Get a Track
+ * https://developer.spotify.com/documentation/web-api/reference/tracks/get-track/
+ */
+export const getTrack = (trackId: string) =>
+  axios.get(`https://api.spotify.com/v1/tracks/${trackId}`, { headers });
+
+/**
+ * Get Audio Analysis for a Track
+ * https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/
+ */
+export const getTrackAudioAnalysis = (trackId: string) =>
+  axios.get(`https://api.spotify.com/v1/audio-analysis/${trackId}`, {
+    headers,
+  });
+
+/**
+ * Get Audio Features for a Track
+ * https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
+ */
+export const getTrackAudioFeatures = (trackId: string) =>
+  axios.get(`https://api.spotify.com/v1/audio-features/${trackId}`, {
+    headers,
+  });
+
+export const getUserInfo = () =>
+  axios
+    .all([
+      getUser(),
+      getFollowing(),
+      getPlaylists(),
+      getTopArtistsLong(),
+      getTopTracksLong(),
+    ])
+    .then(
+      axios.spread(
+        (user, followedArtists, playlists, topArtists, topTracks) => ({
+          user: user.data,
+          followedArtists: followedArtists.data,
+          playlists: playlists.data,
+          topArtists: topArtists.data,
+          topTracks: topTracks.data,
+        })
+      )
+    );
+
+export const getTrackInfo = (trackId: string) =>
+  axios
+    .all([
+      getTrack(trackId),
+      getTrackAudioAnalysis(trackId),
+      getTrackAudioFeatures(trackId),
+    ])
+    .then(
+      axios.spread((track, audioAnalysis, audioFeatures) => ({
+        track: track.data,
+        audioAnalysis: audioAnalysis.data,
+        audioFeatures: audioFeatures.data,
+      }))
+    );

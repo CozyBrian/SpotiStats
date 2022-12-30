@@ -82,6 +82,26 @@ body {
   background-color: #121212;
 }
 
+.spoti_track_container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.spoti_track_meta {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-gap: 10px;
+}
+
+.spoti_track_album {
+  overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 1px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

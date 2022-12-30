@@ -13,10 +13,10 @@ import Wrapped from "./pages/wrapped";
 function App() {
   const location = useLocation();
   return (
-    <div className="w-screen h-screen min-h-full">
-      <div className="flex flex-row h-full w-full">
+    <div className="w-screen h-screen">
+      <div className="flex flex-row h-full w-full overflow-hidden">
         {location.pathname !== "/login" && <NavBar />}
-        <div className="flex-grow">
+        <div className="w-full overflow-y-scroll">
           <Routes location={location} key={location.pathname}>
             <Route
               path="/"

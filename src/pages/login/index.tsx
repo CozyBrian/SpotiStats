@@ -25,7 +25,7 @@ const Login = () => {
       </p>
       <a
         href={LoginURL}
-        className={`text-white px-9 py-4 text-md rounded-full uppercase spoti_button duration-200 tracking-wider`}
+        className={`text-white px-9 py-4 text-base rounded-full uppercase spoti_button duration-200 tracking-wider`}
       >
         SignIn with Spotify
       </a>
