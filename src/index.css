@@ -101,6 +101,13 @@ body {
     white-space: nowrap;
     padding-right: 1px;
 }
+.grid-tmp-col{
+  grid-template-columns: repeat(auto-fit, minmax(216px, 1fr));
+}
+
+.grid-tmp-col.m{
+  grid-template-columns: repeat(auto-fit, minmax(124px, 1fr));
+}
 
 @tailwind base;
 @tailwind components;

@@ -130,3 +130,5 @@ export interface ISpotifyTopArtists extends ISpotifyTopItem {
 export interface ISpotifyTopTracks extends ISpotifyTopItem {
   items: ISpotifyTrack[];
 }
+
+export type timeRangeT = "short_term" | "medium_term" | "long_term";
