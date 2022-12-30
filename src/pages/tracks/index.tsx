@@ -13,6 +13,21 @@ const Tracks = () => {
   const [timeRange, setTimeRange] = useState<timeRangeT>("long_term");
   const [isLoading, setIsLoading] = useState(false);
 
+  const timeRangeValues: { label: string; value: timeRangeT }[] = [
+    {
+      value: "long_term",
+      label: "All Time",
+    },
+    {
+      value: "medium_term",
+      label: "6 Months",
+    },
+    {
+      value: "short_term",
+      label: "4 Weeks",
+    },
+  ];
+
   useEffect(() => {
     switch (timeRange) {
       case "long_term":
@@ -43,11 +58,28 @@ const Tracks = () => {
   }, [timeRange]);
 
   return (
-    <div className="flex items-center md:items-start flex-col p-4 md:p-8 lg:p-16">
-      <div>
+    <div className="flex flex-col p-4 md:p-8 lg:p-16">
+      <div className="flex w-full flex-col md:flex-row items-center md:items-start justify-between text-white align-baseline">
         <p className="text-white tracking-wider uppercase text-3xl lg:text-5xl font-['CircularStd']">
           Tracks
         </p>
+        <div className="flex flex-row gap-4 items-end">
+          {timeRangeValues.map((item) => {
+            const isSelected = item.value === timeRange;
+            return (
+              <span
+                className={
+                  isSelected
+                    ? "text-white underline underline-offset-4"
+                    : "text-[#b3b3b3]"
+                }
+                onClick={() => setTimeRange(item.value)}
+              >
+                {item.label}
+              </span>
+            );
+          })}
+        </div>
       </div>
       <div className="flex justify-center items-center w-full h-full mt-16 font-['CircularStd']">
         {isLoading ? (
@@ -61,7 +93,7 @@ const Tracks = () => {
             />
           </div>
         ) : (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col w-full container gap-2">
             {tracks?.items.map((track) => (
               <TrackItem key={track.id} track={track} />
             ))}

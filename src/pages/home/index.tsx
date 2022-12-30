@@ -48,7 +48,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col p-4 md:p-8 lg:p-16">
+    <div className="flex flex-col items-center md:items-start p-4 md:p-8 lg:p-16">
       <p className="text-white tracking-wider uppercase text-3xl md:text-3xl xl:text-5xl font-['CircularStd']">
         Profile
       </p>
@@ -103,13 +103,13 @@ const Home = () => {
               </div>
               <div className="flex flex-col xl:flex-row flex-grow">
                 <div className="flex flex-col flex-1">
-                  <div className="flex flex-col items-center w-full">
+                  <div className="flex flex-col items-center w-full my-10 md:my-0">
                     <p className="text-white text-xl font-bold">
                       Your Top Artists
                     </p>
                     <span className="w-20 border-b-2 border-b-[#1CB955] pt-2" />
                   </div>
-                  <div className="flex flex-col p-12 gap-4">
+                  <div className="flex flex-col p-4 md:p-12 gap-4">
                     {topArtists?.items.map((artist) => (
                       <div key={artist.id} className="flex flex-row gap-4">
                         <div className="flex w-14 h-14 bg-gray-400 rounded-full shrink-0">
@@ -129,13 +129,13 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="flex flex-col flex-1">
-                  <div className="flex flex-col items-center w-full">
+                  <div className="flex flex-col items-center my-10 md:my-0 w-full">
                     <p className="text-white text-xl font-bold">
                       Your Top Tracks
                     </p>
                     <span className="w-20 border-b-2 border-b-[#1CB955] pt-2" />
                   </div>
-                  <div className="flex flex-col p-12 gap-4">
+                  <div className="flex flex-col p-4 md:p-12 gap-4">
                     {topTracks?.items.map((track) => (
                       <TrackItem key={track.id} track={track} />
                     ))}
