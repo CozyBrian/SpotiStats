@@ -181,15 +181,6 @@ export const getArtist = (artistId: string) =>
   axios.get(`https://api.spotify.com/v1/artists/${artistId}`, { headers });
 
 /**
- * Follow an Artist
- * https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
- */
-export const followArtist = (artistId: string) => {
-  const url = `https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`;
-  return axios({ method: "put", url, headers });
-};
-
-/**
  * Check if Current User Follows Artists
  * https://developer.spotify.com/documentation/web-api/reference/follow/follow-artists-users/
  */
@@ -212,34 +203,6 @@ export const doesUserFollowPlaylist = (playlistId: string, userId: string) =>
       headers,
     }
   );
-
-/**
- * Create a Playlist (The playlist will be empty until you add tracks)
- * https://developer.spotify.com/documentation/web-api/reference/playlists/create-playlist/
- */
-export const createPlaylist = (userId: string, name: string) => {
-  const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
-  const data = JSON.stringify({ name });
-  return axios({ method: "post", url, headers, data });
-};
-
-/**
- * Add Tracks to a Playlist
- * https://developer.spotify.com/documentation/web-api/reference/playlists/add-tracks-to-playlist/
- */
-export const addTracksToPlaylist = (playlistId: string, uris: string) => {
-  const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${uris}`;
-  return axios({ method: "post", url, headers });
-};
-
-/**
- * Follow a Playlist
- * https://developer.spotify.com/documentation/web-api/reference/follow/follow-playlist/
- */
-export const followPlaylist = (playlistId: string) => {
-  const url = `https://api.spotify.com/v1/playlists/${playlistId}/followers`;
-  return axios({ method: "put", url, headers });
-};
 
 /**
  * Get a Playlist
@@ -315,6 +278,18 @@ export const getTrackAudioFeatures = (trackId: string) =>
   axios.get(`https://api.spotify.com/v1/audio-features/${trackId}`, {
     headers,
   });
+
+export const getArtistTopTracks = (artistId: string) =>
+  axios.get(
+    `https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=US`,
+    { headers }
+  );
+
+export const getArtistAlbums = (artistId: string) =>
+  axios.get(
+    `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album,single&market=US&limit=10`,
+    { headers }
+  );
 
 export const getUserInfo = () =>
   axios

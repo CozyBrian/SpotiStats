@@ -19,28 +19,65 @@ const NavBar = () => {
 
   if (isMobile) {
     return (
-      <div className="absolute p-4 left-0 top-0 opacity-30">
-        <div
-          className={`flex flex-row items-center ${
-            !isNavOpen && "justify-center"
-          } gap-2 pb-6`}
-        >
-          <img
-            onClick={() => setIsNavOpen(!isNavOpen)}
-            className="w-10"
-            src={Spotify}
-            alt="white-spotify"
-          />
+      <>
+        <div className="absolute p-4 left-0 top-0 opacity-30 z-20">
+          <div
+            className={`flex flex-row items-center ${
+              !isNavOpen && "justify-center"
+            } gap-2 pb-6`}
+          >
+            <img
+              onClick={() => setIsNavOpenM(!isNavOpenM)}
+              className="w-10"
+              src={Spotify}
+              alt="white-spotify"
+            />
+          </div>
         </div>
-      </div>
+        <motion.aside
+          initial={{ left: 280 }}
+          animate={{ left: isNavOpenM ? 0 : 280 }}
+          transition={{ stiffness: 500 }}
+          style={{ width: "275px" }}
+          className={`absolute text-white h-full bg-black p-4 pt-6 shrink-0 z-20`}
+          // onClick={() => setIsNavOpen(!isNavOpen)}
+        >
+          <div className={`flex flex-row items-center gap-2 pb-6`}>
+            <img
+              onClick={() => setIsNavOpenM(!isNavOpenM)}
+              className="w-10"
+              src={Spotify}
+              alt="white-spotify"
+            />
+            <p className="font-['CircularStd'] text-3xl flex-nowrap">
+              SpotiStats
+            </p>
+          </div>
+          <div className="flex flex-col font-['CircularStd'] gap-1">
+            {routes.map((item, _) => (
+              <div
+                key={`${item.link}-route`}
+                onClick={() => setIsNavOpenM(!isNavOpenM)}
+              >
+                <NavBarItem
+                  isNavOpen={true}
+                  title={item.title}
+                  link={item.link}
+                  Icon={item.Icon}
+                />
+              </div>
+            ))}
+          </div>
+        </motion.aside>
+      </>
     );
   } else {
     return (
       <motion.aside
         initial={{ width: "275px" }}
-        animate={{ width: isNavOpenM ? "275px" : "75px" }}
+        animate={{ width: isNavOpen ? "275px" : "75px" }}
         transition={{ stiffness: 500 }}
-        style={{ width: isNavOpenM ? "275px" : "75px" }}
+        style={{ width: isNavOpen ? "275px" : "75px" }}
         className={`text-white h-full bg-black p-4 pt-6 shrink-0`}
         // onClick={() => setIsNavOpen(!isNavOpen)}
       >
@@ -50,12 +87,7 @@ const NavBar = () => {
           } gap-2 pb-6`}
         >
           <img
-            onClick={() => {
-              setIsNavOpenM(!isNavOpenM);
-              setTimeout(() => {
-                setIsNavOpen(!isNavOpen);
-              }, 150);
-            }}
+            onClick={() => setIsNavOpen(!isNavOpen)}
             className="w-10"
             src={Spotify}
             alt="white-spotify"

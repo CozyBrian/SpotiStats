@@ -17,7 +17,6 @@ import {
   ISpotifyTopTracks,
   ISpotifyUser,
 } from "../../types";
-import IconUser from "../../assets/icons/user";
 
 const Home = () => {
   const [user, setUser] = useState<ISpotifyUser | null>(null);
@@ -71,7 +70,7 @@ const Home = () => {
             />
           </div>
         ) : (
-          user !== null && (
+          user && (
             <>
               <div className="flex flex-col items-center gap-5">
                 <div className="w-40 h-40 rounded-full bg-gray-400 overflow-hidden">

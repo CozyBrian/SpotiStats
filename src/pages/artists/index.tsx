@@ -8,6 +8,7 @@ import {
   getTopArtistsShort,
 } from "../../services/spotify";
 import { ISpotifyTopArtists, timeRangeT } from "../../types";
+import { Link } from "react-router-dom";
 
 const Artists = () => {
   const [topArtists, setTopArtists] = useState<ISpotifyTopArtists | null>(null);
@@ -107,13 +108,15 @@ const Artists = () => {
                   key={artist.id}
                   className="flex flex-col items-center gap-4 mt-8"
                 >
-                  <div className="w-[100px] h-[100px] md:w-[200px] md:h-[200px]">
-                    <img
-                      className="w-full h-full object-cover rounded-lg"
-                      src={artist.images[2].url}
-                      alt="artist"
-                    />
-                  </div>
+                  <Link to={`/artists/${artist.id}`}>
+                    <div className="w-[100px] h-[100px] md:w-[200px] md:h-[200px]">
+                      <img
+                        className="w-full h-full object-cover rounded-lg"
+                        src={artist.images[2].url}
+                        alt="artist"
+                      />
+                    </div>
+                  </Link>
                   <div>
                     <p className="text-white text-base md:text-xl">
                       {artist.name}

@@ -10,12 +10,13 @@ import Artists from "./pages/artists";
 import Tracks from "./pages/tracks";
 import Wrapped from "./pages/wrapped";
 import { AnimatePresence } from "framer-motion";
+import Artist from "./pages/artist";
 
 function App() {
   const location = useLocation();
   return (
-    <div className="w-screen h-screen">
-      <div className="flex flex-row h-full w-full overflow-hidden">
+    <div className="relative w-screen h-screen">
+      <div className="flex flex-row h-full max-screen overflow-hidden">
         {location.pathname !== "/login" && <NavBar />}
         <div className="relative w-full overflow-y-scroll">
           <AnimatePresence mode="wait">
@@ -33,6 +34,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Artists />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/artists/:id"
+                element={
+                  <ProtectedRoute>
+                    <Artist />
                   </ProtectedRoute>
                 }
               />
@@ -74,25 +83,5 @@ const ProtectedRoute = ({ children }: props) => {
 
   return children ? children : <Outlet />;
 };
-
-// const ProtectedRoutes = () => {
-//   const navigate = useNavigate();
-//   const user = useAppSelector((state) => state.user);
-
-//   useEffect(() => {
-//     if (user.access_token === null) {
-//       navigate("/login", { replace: true });
-//     }
-//   }, [navigate, user.access_token]);
-
-//   return (
-//     <div className="flex flex-row w-full h-full">
-//       <NavBar />
-//       <div className="flex-grow">
-//         <Outlet />
-//       </div>
-//     </div>
-//   );
-// };
 
 export default App;

@@ -47,6 +47,19 @@ export interface ISpotifyArtist {
   uri: string;
 }
 
+export interface ISpotifyAlbum {
+  album_type: string;
+  id: string;
+  name: string;
+  images: {
+    url: string;
+    height: number;
+    width: number;
+  }[];
+  type: string;
+  release_date: string;
+}
+
 export interface ISpotifyTrack {
   id: string;
   name: string;
@@ -129,6 +142,14 @@ export interface ISpotifyTopArtists extends ISpotifyTopItem {
 
 export interface ISpotifyTopTracks extends ISpotifyTopItem {
   items: ISpotifyTrack[];
+}
+
+export interface ISpotifyArtistTopTracks extends ISpotifyTopItem {
+  tracks: ISpotifyTrack[];
+}
+
+export interface ISpotifyArtistAlbums extends ISpotifyTopItem {
+  items: ISpotifyAlbum[];
 }
 
 export type timeRangeT = "short_term" | "medium_term" | "long_term";
