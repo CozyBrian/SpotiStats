@@ -17,6 +17,7 @@ import {
   ISpotifyTopTracks,
   ISpotifyUser,
 } from "../../types";
+import IconUser from "../../assets/icons/user";
 
 const Home = () => {
   const [user, setUser] = useState<ISpotifyUser | null>(null);
@@ -58,7 +59,7 @@ const Home = () => {
       <p className="text-white tracking-wider uppercase text-3xl md:text-3xl xl:text-5xl font-['CircularStd']">
         Profile
       </p>
-      <div className="flex flex-col lg:flex-row gap-8 mt-16 font-['CircularStd']">
+      <div className="flex flex-col w-full lg:flex-row gap-8 mt-16 font-['CircularStd']">
         {isLoading ? (
           <div className="absolute left-[50%] top-[50%] -translate-x-8 -translate-y-8">
             <Oval
@@ -73,17 +74,26 @@ const Home = () => {
           user !== null && (
             <>
               <div className="flex flex-col items-center gap-5">
-                <div className="w-40 h-40 rounded-full bg-gray-400"></div>
+                <div className="w-40 h-40 rounded-full bg-gray-400 overflow-hidden">
+                  {user.images.length > 0 ? (
+                    <img src={user.images[0].url} alt="avatar" />
+                  ) : (
+                    <img
+                      src={`https://avatars.dicebear.com/api/initials/${user.display_name}.svg`}
+                      alt="avatar"
+                    />
+                  )}
+                </div>
                 <div className="flex flex-col items-center gap-1">
                   <p className="text-white text-5xl font-bold">
                     {user!.display_name}
                   </p>
-                  <p className="text-[#9B9B9B] text-base ">{user!.id}</p>
+                  <p className="text-[#9B9B9B] text-base ">{user.id}</p>
                 </div>
                 <div className="grid grid-cols-3 w-[300px]">
                   <div className="flex flex-col items-center gap-1">
                     <p className="text-[#1CB955] font-bold text-base">
-                      {user!.followers.total}
+                      {user.followers.total}
                     </p>
                     <p className="text-[#9B9B9B] font-normal text-xs uppercase tracking-wider">
                       Followers
