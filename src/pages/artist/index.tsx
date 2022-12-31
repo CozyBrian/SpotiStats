@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import {
   getArtist,
@@ -107,12 +107,13 @@ const Artist = () => {
                 <div className="w-full overflow-x-scroll">
                   <div className="grid grid-tmp-col2 overflow-x-scroll w-full gap-2 pt-1">
                     {topTracks?.tracks.slice(0, 6).map((track) => (
-                      <div
+                      <Link
+                        to={`/tracks/${track.id}`}
                         key={track.id}
                         className="bg-[#121212] min-w-[288px] pr-1"
                       >
                         <TrackItem key={track.id} track={track} />
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -122,7 +123,10 @@ const Artist = () => {
                 <div className="overflow-x-scroll">
                   <div className="flex flex-row gap-2 pt-1">
                     {UniqueAlbums.slice(0, 6).map((album) => (
-                      <div
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={album.external_urls.spotify}
                         key={album.id}
                         className="flex flex-col items-center w-[200px] rounded-xl p-2 bg-[#121212]"
                       >
@@ -136,7 +140,7 @@ const Artist = () => {
                         <div className="w-full pt-1">
                           <p className="text-base">{album.name}</p>
                         </div>
-                      </div>
+                      </a>
                     ))}
                   </div>
                 </div>

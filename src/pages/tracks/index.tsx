@@ -8,6 +8,7 @@ import {
   getTopTracksShort,
 } from "../../services/spotify";
 import { ISpotifyTopTracks, timeRangeT } from "../../types";
+import { Link } from "react-router-dom";
 
 const Tracks = () => {
   const [tracks, setTracks] = useState<ISpotifyTopTracks | null>(null);
@@ -101,7 +102,9 @@ const Tracks = () => {
         ) : (
           <div className="flex flex-col w-full container gap-2">
             {tracks?.items.map((track) => (
-              <TrackItem key={track.id} track={track} />
+              <Link key={track.id} to={`/tracks/${track.id}`}>
+                <TrackItem track={track} />
+              </Link>
             ))}
           </div>
         )}

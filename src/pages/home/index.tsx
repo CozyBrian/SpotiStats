@@ -17,6 +17,7 @@ import {
   ISpotifyTopTracks,
   ISpotifyUser,
 } from "../../types";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [user, setUser] = useState<ISpotifyUser | null>(null);
@@ -126,20 +127,22 @@ const Home = () => {
                   </div>
                   <div className="flex flex-col p-4 md:p-12 gap-4">
                     {topArtists?.items.map((artist) => (
-                      <div key={artist.id} className="flex flex-row gap-4">
-                        <div className="flex w-14 h-14 bg-gray-400 rounded-full shrink-0">
-                          <img
-                            className="w-full h-full rounded-full object-cover"
-                            src={artist.images[2].url}
-                            alt={`${artist.id}-profile`}
-                          />
+                      <Link key={artist.id} to={`/artists/${artist.id}`}>
+                        <div className="flex flex-row gap-4">
+                          <div className="flex w-14 h-14 bg-gray-400 rounded-full shrink-0">
+                            <img
+                              className="w-full h-full rounded-full object-cover"
+                              src={artist.images[2].url}
+                              alt={`${artist.id}-profile`}
+                            />
+                          </div>
+                          <div className="flex h-full items-center shrink-0">
+                            <p className="text-white text-xl flex-nowrap">
+                              {artist.name}
+                            </p>
+                          </div>
                         </div>
-                        <div className="flex h-full items-center shrink-0">
-                          <p className="text-white text-xl flex-nowrap">
-                            {artist.name}
-                          </p>
-                        </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -152,7 +155,9 @@ const Home = () => {
                   </div>
                   <div className="flex flex-col p-4 md:p-12 gap-4">
                     {topTracks?.items.map((track) => (
-                      <TrackItem key={track.id} track={track} />
+                      <Link key={track.id} to={`/tracks/${track.id}`}>
+                        <TrackItem track={track} />
+                      </Link>
                     ))}
                   </div>
                 </div>

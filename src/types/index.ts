@@ -58,13 +58,19 @@ export interface ISpotifyAlbum {
   }[];
   type: string;
   release_date: string;
+  external_urls: {
+    spotify: string;
+  };
 }
 
 export interface ISpotifyTrack {
   id: string;
   name: string;
+  external_urls: {
+    spotify: string;
+  };
   artists: ISpotifyArtist[];
-  album: { name: string; images: { url: string }[] };
+  album: ISpotifyAlbum;
   duration_ms: number;
 }
 

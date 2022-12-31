@@ -11,6 +11,7 @@ import Tracks from "./pages/tracks";
 import Wrapped from "./pages/wrapped";
 import { AnimatePresence } from "framer-motion";
 import Artist from "./pages/artist";
+import Track from "./pages/track";
 
 function App() {
   const location = useLocation();
@@ -50,6 +51,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Tracks />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/tracks/:id"
+                element={
+                  <ProtectedRoute>
+                    <Track />
                   </ProtectedRoute>
                 }
               />
