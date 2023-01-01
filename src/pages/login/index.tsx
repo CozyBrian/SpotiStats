@@ -24,8 +24,6 @@ const Login = () => {
         Welcome to SpotiStats
       </p>
       <a
-        target="_blank"
-        rel="noopener noreferrer"
         href={LoginURL}
         className={`text-white px-9 py-4 text-base rounded-full uppercase spoti_button duration-200 tracking-wider`}
       >
