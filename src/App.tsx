@@ -5,7 +5,6 @@ import { useAppSelector } from "./hooks";
 import Error from "./pages/404";
 import Home from "./pages/home";
 import Login from "./pages/login";
-import "./app.css";
 import Artists from "./pages/artists";
 import Tracks from "./pages/tracks";
 import Wrapped from "./pages/wrapped";
