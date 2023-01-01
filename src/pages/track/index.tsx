@@ -5,6 +5,7 @@ import { ISpotifyTrack } from "../../types";
 import { getTrack } from "../../services/spotify";
 import { Oval } from "react-loader-spinner";
 import { getYear } from "../../utils";
+import Img from "../../components/Img";
 
 const Track = () => {
   const { id } = useParams();
@@ -43,16 +44,18 @@ const Track = () => {
       ) : (
         track && (
           <div className="w-full h-full">
-            <div className="flex flex-row gap-8">
-              <div className="h-[250px] w-[250px] bg-slate-400 shadow-xl">
-                <img
+            <div className="flex flex-col items-center pt-16 md:flex-row md:items-start md:pt-0 gap-8">
+              <div className="h-[250px] w-[250px] bg-[#282828] shadow-xl">
+                <Img
                   className="h-full w-full object-cover"
                   src={track.album.images[1].url}
                   alt="album"
                 />
               </div>
-              <div className="flex flex-col gap-3 py-4">
-                <p className="text-4xl font-bold text-white">{track.name}</p>
+              <div className="flex flex-col md:items-start items-center gap-3 py-4">
+                <p className="text-4xl font-bold text-center md:text-start text-white">
+                  {track.name}
+                </p>
                 <p className="text-2xl font-semibold text-[#b3b3b3]">
                   {track.artists[0].name}
                 </p>

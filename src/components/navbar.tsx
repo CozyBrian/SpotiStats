@@ -35,12 +35,11 @@ const NavBar = () => {
           </div>
         </div>
         <motion.aside
-          initial={{ left: 280 }}
-          animate={{ left: isNavOpenM ? 0 : 280 }}
+          initial={{ left: 0 }}
+          animate={{ left: isNavOpenM ? -280 : 0 }}
           transition={{ stiffness: 500 }}
           style={{ width: "275px" }}
           className={`absolute text-white h-full bg-black p-4 pt-6 shrink-0 z-20`}
-          // onClick={() => setIsNavOpen(!isNavOpen)}
         >
           <div className={`flex flex-row items-center gap-2 pb-6`}>
             <img

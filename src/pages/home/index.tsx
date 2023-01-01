@@ -18,6 +18,7 @@ import {
   ISpotifyUser,
 } from "../../types";
 import { Link } from "react-router-dom";
+import Img from "../../components/Img";
 
 const Home = () => {
   const [user, setUser] = useState<ISpotifyUser | null>(null);
@@ -74,11 +75,11 @@ const Home = () => {
           user && (
             <>
               <div className="flex flex-col items-center gap-5">
-                <div className="w-40 h-40 rounded-full bg-gray-400 overflow-hidden">
+                <div className="w-40 h-40 rounded-full bg-[#282828] overflow-hidden">
                   {user.images.length > 0 ? (
-                    <img src={user.images[0].url} alt="avatar" />
+                    <Img src={user.images[0].url} alt="avatar" />
                   ) : (
-                    <img
+                    <Img
                       src={`https://avatars.dicebear.com/api/initials/${user.display_name}.svg`}
                       alt="avatar"
                     />
@@ -129,8 +130,8 @@ const Home = () => {
                     {topArtists?.items.map((artist) => (
                       <Link key={artist.id} to={`/artists/${artist.id}`}>
                         <div className="flex flex-row gap-4">
-                          <div className="flex w-14 h-14 bg-gray-400 rounded-full shrink-0">
-                            <img
+                          <div className="flex w-14 h-14 bg-[#282828] rounded-full shrink-0">
+                            <Img
                               className="w-full h-full rounded-full object-cover"
                               src={artist.images[2].url}
                               alt={`${artist.id}-profile`}

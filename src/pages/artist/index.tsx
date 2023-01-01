@@ -16,6 +16,7 @@ import {
 import { formatWithCommas } from "../../utils";
 import axios from "axios";
 import TrackItem from "../../components/trackItem";
+import Img from "../../components/Img";
 
 const Artist = () => {
   const { id } = useParams();
@@ -70,7 +71,7 @@ const Artist = () => {
           <div className="flex flex-col lg:flex-row mt-8 md:mt-0 items-center w-full gap-8 h-full rounded-md">
             <div className="flex flex-col gap-4 items-center">
               <div className="w-[200px] h-[200px] md:w-[300px] md:h-[300px]">
-                <img
+                <Img
                   className="w-full h-full object-cover rounded-full"
                   src={artist.images[1].url}
                   alt="artist"
@@ -131,7 +132,7 @@ const Artist = () => {
                         className="flex flex-col items-center w-[200px] rounded-xl p-2 bg-[#121212]"
                       >
                         <div className="aspect-square w-full shrink-0">
-                          <img
+                          <Img
                             className="w-full min-h-[96px] min-w-[96px] aspect-square object-cover rounded-md"
                             src={album.images[1].url}
                             alt="album-art"

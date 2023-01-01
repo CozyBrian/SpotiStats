@@ -1,12 +1,13 @@
 import React from "react";
 import { ISpotifyTrack } from "../types";
 import { formatDuration } from "../utils";
+import Img from "./Img";
 
 const TrackItem = ({ track }: { track: ISpotifyTrack }) => {
   return (
-    <div className="spoti_track_container gap-4 text-white">
-      <div className="flex w-14 h-14 bg-gray-400 shrink-0 flex-nowrap">
-        <img
+    <div className="spoti_track_container h-full gap-4 text-white">
+      <div className="flex w-14 h-14 bg-[#282828] shrink-0 flex-nowrap">
+        <Img
           className="w-full h-full object-cover"
           src={track.album.images[0].url}
           alt={`${track.id}-profile`}

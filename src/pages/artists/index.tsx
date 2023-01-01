@@ -9,6 +9,7 @@ import {
 } from "../../services/spotify";
 import { ISpotifyTopArtists, timeRangeT } from "../../types";
 import { Link } from "react-router-dom";
+import Img from "../../components/Img";
 
 const Artists = () => {
   const [topArtists, setTopArtists] = useState<ISpotifyTopArtists | null>(null);
@@ -72,10 +73,11 @@ const Artists = () => {
           Artists
         </p>
         <div className="flex flex-row gap-4 items-end">
-          {timeRangeValues.map((item) => {
+          {timeRangeValues.map((item, i) => {
             const isSelected = item.value === timeRange;
             return (
               <span
+                key={`time-range-${i}`}
                 className={
                   isSelected
                     ? "text-white underline underline-offset-4"
@@ -110,7 +112,7 @@ const Artists = () => {
                 >
                   <Link to={`/artists/${artist.id}`}>
                     <div className="w-[100px] h-[100px] md:w-[200px] md:h-[200px]">
-                      <img
+                      <Img
                         className="w-full h-full object-cover rounded-lg"
                         src={artist.images[2].url}
                         alt="artist"
