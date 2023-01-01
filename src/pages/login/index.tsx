@@ -16,7 +16,7 @@ const Login = () => {
   const LoginURL =
     process.env.NODE_ENV !== "production"
       ? "http://localhost:3001/v1/auth/login"
-      : "/login";
+      : "https://spotistatsserver.render.com/v1/auth/login";
 
   return (
     <div className="flex flex-col justify-center items-center h-full gap-4 font-['CircularStd']">

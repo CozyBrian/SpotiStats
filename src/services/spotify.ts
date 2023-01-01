@@ -4,7 +4,7 @@ import { getHashParams } from "../utils";
 const SERVER_URL =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:3001/v1/auth"
-    : "/login";
+    : "https://spotistatsserver.render.com/v1/auth/login";
 
 // TOKENS ******************************************************************************************
 const EXPIRATION_TIME = 3600 * 1000; // 3600 seconds * 1000 = 1 hour in milliseconds
