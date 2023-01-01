@@ -6,7 +6,6 @@ import Microphone from "../assets/icons/microphone";
 import Music from "../assets/icons/music";
 import IconUser from "../assets/icons/user";
 import useDeviceDetect from "../hooks/useMobileDetect";
-import "./navbar.tsx";
 
 const NavBar = () => {
   const [isNavOpenM, setIsNavOpenM] = useState(true);

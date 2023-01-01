@@ -1,9 +1,0 @@
-.spoti_button {
-  background-color: #1CB955;
-  transition: all 0.25s cubic-bezier(0.3, 0, 0.4, 1);
-}
-
-.spoti_button:hover {
-  background-color: #1CD760;
-  transition: all 0.25s cubic-bezier(0.3, 0, 0.4, 1);
-}
