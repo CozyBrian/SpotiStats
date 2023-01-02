@@ -19,7 +19,7 @@ const Login = () => {
       : "https://spotistatsserver.onrender.com/v1/auth/login";
 
   return (
-    <div className="flex flex-col justify-center items-center h-full gap-4 font-['CircularStd']">
+    <div className="flex flex-col justify-center items-center min-h-screen gap-4 font-['CircularStd']">
       <p className="text-white text-3xl font-['CircularStd']">
         Welcome to SpotiStats
       </p>

@@ -20,7 +20,7 @@ const NavBar = () => {
   if (isMobile) {
     return (
       <>
-        <div className="absolute p-4 left-0 top-0 opacity-30 z-20">
+        <div className="fixed p-4 left-0 top-0 opacity-30 z-20">
           <div
             className={`flex flex-row items-center ${
               !isNavOpen && "justify-center"
@@ -39,7 +39,7 @@ const NavBar = () => {
           animate={{ left: isNavOpenM ? -280 : 0 }}
           transition={{ stiffness: 500 }}
           style={{ width: "275px" }}
-          className={`absolute text-white h-full bg-black p-4 pt-6 shrink-0 z-20`}
+          className={`fixed text-white h-full bg-black p-4 pt-6 shrink-0 z-20`}
         >
           <div className={`flex flex-row items-center gap-2 pb-6`}>
             <img

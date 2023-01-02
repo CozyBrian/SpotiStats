@@ -15,9 +15,11 @@ import Track from "./pages/track";
 function App() {
   const location = useLocation();
   return (
-    <div className="relative w-screen h-screen">
+    <div className="relative w-screen md:h-screen">
       <div className="flex flex-row h-full max-screen overflow-hidden">
+        {/* <div className="fixed top-0 left-0 h-screen"> */}
         {location.pathname !== "/login" && <NavBar />}
+        {/* </div> */}
         <div className="relative w-full overflow-y-scroll">
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>

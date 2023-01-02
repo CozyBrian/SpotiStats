@@ -91,7 +91,7 @@ const Artists = () => {
           })}
         </div>
       </div>
-      <div className="flex justify-center items-center w-full h-full mt-16 font-['CircularStd']">
+      <div className="flex justify-center items-center w-full min-h-screen mt-16 font-['CircularStd']">
         {
           <div className={`grid grid-tmp-col ${isMobile && "m"} w-full`}>
             {isLoading ? (

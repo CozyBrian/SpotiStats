@@ -29,7 +29,7 @@ const Track = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="flex flex-col justify-center items-center h-full p-4 lg:p-8 xl:p-16 font-[CircularStd] text-2xl text-white"
+      className="flex flex-col justify-center items-center min-h-screen p-4 lg:p-8 xl:p-16 font-[CircularStd] text-2xl text-white"
     >
       {isLoading ? (
         <div className="absolute left-[50%] top-[50%] -translate-x-8 -translate-y-8">

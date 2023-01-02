@@ -9,6 +9,7 @@ import {
   getMinTopTracksLong,
   getPlaylists,
   getUser,
+  logoutUser,
 } from "../../services/spotify";
 import {
   IFollowedArtists,
@@ -57,10 +58,18 @@ const Home = () => {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center md:items-start p-4 md:p-8 lg:p-16"
     >
-      <p className="text-white tracking-wider uppercase text-3xl md:text-3xl xl:text-5xl font-['CircularStd']">
-        Profile
-      </p>
-      <div className="flex flex-col w-full lg:flex-row gap-8 mt-16 font-['CircularStd']">
+      <div className="flex flex-row justify-between items-center w-full">
+        <p className="text-white tracking-wider uppercase text-3xl md:text-3xl xl:text-5xl font-['CircularStd']">
+          Profile
+        </p>
+        <button
+          onClick={() => logoutUser()}
+          className="text-white px-6 py-2 hover:font-bold text-sm rounded-full border border-white hover:bg-white hover:text-black uppercase duration-200 tracking-wider"
+        >
+          LogOut
+        </button>
+      </div>
+      <div className="flex flex-col w-full min-h-screen lg:flex-row gap-8 mt-16 font-['CircularStd']">
         {isLoading ? (
           <div className="absolute left-[50%] top-[50%] -translate-x-8 -translate-y-8">
             <Oval
@@ -77,9 +86,14 @@ const Home = () => {
               <div className="flex flex-col items-center gap-5">
                 <div className="w-40 h-40 rounded-full bg-[#282828] overflow-hidden">
                   {user.images.length > 0 ? (
-                    <Img src={user.images[0].url} alt="avatar" />
+                    <Img
+                      className="w-full h-full rounded-full"
+                      src={user.images[0].url}
+                      alt="avatar"
+                    />
                   ) : (
                     <Img
+                      className="w-full h-full rounded-full"
                       src={`https://avatars.dicebear.com/api/initials/${user.display_name}.svg`}
                       alt="avatar"
                     />

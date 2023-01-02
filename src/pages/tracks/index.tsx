@@ -88,7 +88,7 @@ const Tracks = () => {
           })}
         </div>
       </div>
-      <div className="flex justify-center items-center w-full h-full mt-16 font-['CircularStd']">
+      <div className="flex justify-center items-center w-full min-h-screen mt-16 font-['CircularStd']">
         {isLoading ? (
           <div className="absolute left-[50%] top-[50%] -translate-x-8 -translate-y-8">
             <Oval
