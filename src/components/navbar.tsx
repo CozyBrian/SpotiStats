@@ -48,9 +48,7 @@ const NavBar = () => {
               src={Spotify}
               alt="white-spotify"
             />
-            <p className="font-['CircularStd'] text-3xl flex-nowrap">
-              SpotiStats
-            </p>
+            <p className="font-['CircularStd'] text-3xl flex-nowrap">Statify</p>
           </div>
           <div className="flex flex-col font-['CircularStd'] gap-1">
             {routes.map((item, _) => (
@@ -92,9 +90,7 @@ const NavBar = () => {
             alt="white-spotify"
           />
           {isNavOpen && (
-            <p className="font-['CircularStd'] text-3xl flex-nowrap">
-              SpotiStats
-            </p>
+            <p className="font-['CircularStd'] text-3xl flex-nowrap">Statify</p>
           )}
         </div>
         <div className="flex flex-col font-['CircularStd'] gap-1">

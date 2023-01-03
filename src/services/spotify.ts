@@ -114,6 +114,21 @@ export const getRecentlyPlayed = () =>
   axios.get("https://api.spotify.com/v1/me/player/recently-played", {
     headers,
   });
+export const getPlayedYear = () => {
+  const date = new Date();
+
+  date.setMonth(date.getMonth() - 10);
+  const aYearAgoUnix = date.getTime();
+
+  console.log(aYearAgoUnix);
+
+  return axios.get(
+    `https://api.spotify.com/v1/me/player/recently-played?after=${aYearAgoUnix}`,
+    {
+      headers,
+    }
+  );
+};
 
 /**
  * Get a List of Current User's Playlists

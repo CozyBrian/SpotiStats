@@ -21,7 +21,7 @@ const Login = () => {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen gap-4 font-['CircularStd']">
       <p className="text-white text-3xl font-['CircularStd']">
-        Welcome to SpotiStats
+        Welcome to Statify for Spotify
       </p>
       <a
         href={LoginURL}

@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { getPlayedYear } from "../../services/spotify";
 
 const Wrapped = () => {
+  useEffect(() => {
+    getPlayedYear().then((res) => {
+      console.log(res.data);
+    });
+  }, []);
+
   return (
     <div className="">
       <div className="p-16">
