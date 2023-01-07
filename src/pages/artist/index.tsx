@@ -107,7 +107,7 @@ const Artist = () => {
                 <div>
                   <p className="text-lg text-[#b3b3b3]">Top Tracks:</p>
                   <div className="w-full overflow-x-scroll">
-                    <div className="grid grid-cols-3 overflow-x-scroll w-full gap-2 pt-1">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-x-scroll w-full gap-2 pt-1">
                       {topTracks?.tracks.slice(0, 6).map((track) => (
                         <Link
                           to={`/tracks/${track.id}`}
@@ -130,17 +130,22 @@ const Artist = () => {
                           rel="noopener noreferrer"
                           href={album.external_urls.spotify}
                           key={album.id}
-                          className="flex flex-col items-center w-[150px] rounded-xl bg-[#121212]"
+                          className="flex flex-col items-center w-[150px] rounded-sm bg-[#121212]"
                         >
                           <div className="aspect-square w-[150px] p-2 shrink-0">
                             <Img
-                              className="w-full min-h-full min-w-full aspect-square object-cover rounded-md"
+                              className="w-full min-h-full min-w-full aspect-square object-cover"
                               src={album.images[1].url}
                               alt="album-art"
                             />
                           </div>
-                          <div className="w-full pt-1">
+                          <div className="w-full p-2 pt-0">
                             <p className="text-base truncate">{album.name}</p>
+                            <div className="text-sm truncate text-[#9B9B9B]">
+                              {album.release_date.slice(0, 4)}
+                              &nbsp;&middot;&nbsp;
+                              {album.type}
+                            </div>
                           </div>
                         </a>
                       ))}

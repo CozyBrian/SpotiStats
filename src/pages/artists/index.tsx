@@ -113,7 +113,7 @@ const Artists = () => {
                   <Link to={`/artists/${artist.id}`}>
                     <div className="w-[100px] h-[100px] md:w-[200px] md:h-[200px]">
                       <Img
-                        className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-full object-cover rounded-full"
                         src={artist.images[2].url}
                         alt="artist"
                       />
